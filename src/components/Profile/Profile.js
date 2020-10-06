@@ -1,6 +1,6 @@
 import React from 'react'
 
-class NewsFeed extends React.Component {
+class Profile extends React.Component {
   constructor ({ user }) {
     super()
     this.state = user
@@ -8,10 +8,10 @@ class NewsFeed extends React.Component {
   render () {
     return (
       <div>
-        <h1>This is the NewsFeed</h1>
+        <h1>This is the Profile</h1>
       </div>
     )
   }
 }
 
-export default NewsFeed
+export default Profile

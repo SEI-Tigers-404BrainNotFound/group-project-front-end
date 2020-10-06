@@ -8,6 +8,9 @@ import SignUp from '../SignUp/SignUp'
 import SignIn from '../SignIn/SignIn'
 import SignOut from '../SignOut/SignOut'
 import ChangePassword from '../ChangePassword/ChangePassword'
+import NewsFeed from '../NewsFeed/NewsFeed'
+import Profile from '../Profile/Profile'
+import UploadImage from '../UploadImage/UploadImage'
 
 class App extends Component {
   constructor () {
@@ -53,6 +56,15 @@ class App extends Component {
           )} />
           <AuthenticatedRoute user={user} path='/change-password' render={() => (
             <ChangePassword msgAlert={this.msgAlert} user={user} />
+          )} />
+          <AuthenticatedRoute user={user} exact path='/' render={() => (
+            <NewsFeed user={user} />
+          )} />
+          <AuthenticatedRoute user={user} exact path='/user-profile' render={() => (
+            <Profile user={user} />
+          )} />
+          <AuthenticatedRoute user={user} exact path='/upload-image' render={() => (
+            <UploadImage user={user} />
           )} />
         </main>
       </Fragment>
