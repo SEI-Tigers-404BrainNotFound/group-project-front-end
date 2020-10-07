@@ -1,4 +1,5 @@
 import React from 'react'
+// import { Link } from 'react-router-dom'
 import Card from 'react-bootstrap/Card'
 
 class NewsFeed extends React.Component {
@@ -10,7 +11,8 @@ class NewsFeed extends React.Component {
     return (
       <div>
         <Card style={{ width: '24rem' }} >
-          <div className="pt-4 pr-2 pl-2 pb-2 mb-0 bg-gradient-primary text-white">
+          <div className="pt-2 pr-2 pl-2 pb-2 mb-0 bg-gradient-primary text-white">
+            <Card.Header>r@r</Card.Header>
             <div className="bg-gradient-dark">
               <Card.Img variant="top" src="https://i.imgur.com/8whqMYk.jpg" />
               <Card.Body>
