@@ -1,1 +1,23 @@
+$enable-gradients: true;
+$primary: #8B0000;
 @import '~bootstrap/scss/bootstrap';
+h1 {
+  color: white;
+  text-align: center;
+}
+h2 {
+  color: white;
+  text-align: center;
+}
+body {
+  background-color: black;
+}
+.card {
+  background-color: transparent;
+  float: none;
+  margin: 0 auto;
+  margin-top: 14px;
+  margin-bottom: 10px;
+  object-fit: cover;
+  padding: 10px;
+}
