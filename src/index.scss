@@ -12,6 +12,15 @@ h2 {
 body {
   background-color: black;
 }
+.card {
+  background-color: transparent;
+  float: none;
+  margin: 0 auto;
+  margin-top: 14px;
+  margin-bottom: 10px;
+  object-fit: cover;
+  padding: 10px;
+}
 .grid {
   background-color: transparent;
   float: none;
@@ -26,4 +35,7 @@ body {
   height: 293px;
   width: 293px;
   object-fit: cover;
+}
+.linkIt {
+  color: #FFFF00;
 }
