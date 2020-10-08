@@ -9,7 +9,7 @@ import SignIn from '../SignIn/SignIn'
 import SignOut from '../SignOut/SignOut'
 import ChangePassword from '../ChangePassword/ChangePassword'
 import NewsFeed from '../NewsFeed/NewsFeed'
-import Profile from '../Profile/Profile'
+import ProfileNew from '../Profile/ProfileNew'
 import UploadImage from '../UploadImage/UploadImage'
 
 class App extends Component {
@@ -61,7 +61,7 @@ class App extends Component {
             <NewsFeed user={user} />
           )} />
           <AuthenticatedRoute user={user} exact path='/user-profile' render={() => (
-            <Profile user={user} />
+            <ProfileNew user={user} />
           )} />
           <AuthenticatedRoute user={user} exact path='/upload-image' render={() => (
             <UploadImage user={user} />
