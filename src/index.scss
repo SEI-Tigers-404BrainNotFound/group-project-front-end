@@ -28,6 +28,12 @@ body {
   padding: 10px;
 }
 
+.profile-container {
+  display: flex;
+  max-width: 1000px;
+  flew-wrap: wrap;
+}
+
 .image {
   height: 293px;
   width: 293px;

@@ -45,7 +45,7 @@ class ProfileIndex extends React.Component {
     } else {
       const url = 'https://404brainnotfound.s3.amazonaws.com/'
       jsx = (
-        <div>
+        <div className='profile-container'>
           {this.state.userImages.map(userImage => {
             return <Col key={userImage._id} size="4" className="grid"><Link to={`/userImages/${userImage._id}`}>
               <Image className="image" variant="top" src={url + userImage.fileName} />
