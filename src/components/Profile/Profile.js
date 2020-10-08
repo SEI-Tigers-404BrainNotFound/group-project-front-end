@@ -13,27 +13,27 @@ class Profile extends React.Component {
     return (
       <div>
         <h2>This is the Profile</h2>
-        <Container>
+        <Container className="contain">
           <Row>
             <Col size="4" className="grid">
-              <Image className="image" variant="top" src="https://i.imgur.com/8whqMYk.jpg" thumbnail />
+              <Image className="image" variant="top" src="https://i.imgur.com/8whqMYk.jpg" />
             </Col>
             <Col size="4" className="grid">
-              <Image className="image" variant="top" src="https://i.imgur.com/cbMvql7.jpg" thumbnail />
+              <Image className="image" variant="top" src="https://i.imgur.com/cbMvql7.jpg" />
             </Col>
             <Col size="4" className="grid">
-              <Image className="image" variant="top" src="https://i.imgur.com/PoinHxt.jpg" thumbnail />
+              <Image className="image" variant="top" src="https://i.imgur.com/PoinHxt.jpg" />
             </Col>
           </Row>
           <Row>
             <Col size="4" className="grid">
-              <Image className="image" variant="top" src="https://i.imgur.com/8whqMYk.jpg" thumbnail />
+              <Image className="image" variant="top" src="https://i.imgur.com/8whqMYk.jpg" />
             </Col>
             <Col size="4" className="grid">
-              <Image className="image" variant="top" src="https://i.imgur.com/8whqMYk.jpg" thumbnail />
+              <Image className="image" variant="top" src="https://i.imgur.com/8whqMYk.jpg" />
             </Col>
             <Col size="4" className="grid">
-              <Image className="image" variant="top" src="https://i.imgur.com/8whqMYk.jpg" thumbnail />
+              <Image className="image" variant="top" src="https://i.imgur.com/8whqMYk.jpg" />
             </Col>
           </Row>
         </Container>
