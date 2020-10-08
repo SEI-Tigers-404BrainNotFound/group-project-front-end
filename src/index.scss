@@ -12,6 +12,12 @@ h2 {
 body {
   background-color: black;
 }
+
+.cards {
+  margin-bottom: 10px;
+  align-self: center;
+}
+
 .grid {
   background-color: transparent;
   float: none;
@@ -26,4 +32,10 @@ body {
   height: 293px;
   width: 293px;
   object-fit: cover;
+}
+
+.newsFeed {
+  display: flex;
+  flex-direction: column;
+  align: center;
 }
