@@ -58,7 +58,7 @@ class NewsFeed extends React.Component {
                       {userImage.tag}
                     </Card.Text>
                     <Card.Text>
-                      {userImage.createdAt.match(/^$\d{4}-\d{2}-\d{2}/)[0]}
+                      {userImage.createdAt.match(/^\d{4}-\d{2}-\d{2}/)[0]}
                     </Card.Text>
                   </Card.Body>
                 </div>
