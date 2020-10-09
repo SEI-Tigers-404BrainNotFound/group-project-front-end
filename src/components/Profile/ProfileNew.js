@@ -8,6 +8,9 @@ import { Link } from 'react-router-dom'
 class ProfileIndex extends React.Component {
   constructor (props) {
     super(props)
+    console.log('props = ', props)
+    console.log('params = ', this.params)
+    console.log('match = ', this.match)
     this.state = {
       isLoaded: false,
       userImages: [],
@@ -34,11 +37,18 @@ class ProfileIndex extends React.Component {
       .catch(console.error)
   } // componentDidMount
 
-  clickHandler = (event) => {
-    event.preventDefault()
-    console.log('hello' + event.target.value)
-  }
+  // clickHandler = (event) => {
+  //   event.preventDefault()
+  //   console.log('hello' + event.target.value)
+  // }
   render () {
+    const url = 'https://404brainnotfound.s3.amazonaws.com/'
+    const userImageArray = this.state.userImages.map(userImage => {
+      return <Col key={userImage._id} size="4" className="grid"><Link to={`/image-profile/${userImage._id}`}>
+        <Image className="image" variant="top" src={url + userImage.fileName} onClick={this.clickHandler}/>
+      </Link>
+      </Col>
+    })
     console.log(this.props)
     let jsx
     // while the books are loading
@@ -49,15 +59,9 @@ class ProfileIndex extends React.Component {
       jsx = <p>No images, please add one. </p>
       // when the request is complete
     } else {
-      const url = 'https://404brainnotfound.s3.amazonaws.com/'
       jsx = (
         <div className='profile-container'>
-          {this.state.userImages.map(userImage => {
-            return <Col key={userImage._id} size="4" className="grid"><Link to={`/userImages/${userImage._id}`}>
-              <Image className="image" variant="top" src={url + userImage.fileName} onClick={this.clickHandler}/>
-            </Link>
-            </Col>
-          })}
+          {userImageArray.reverse()}
         </div>
       )
     }
