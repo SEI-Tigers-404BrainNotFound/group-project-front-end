@@ -75,6 +75,7 @@ class App extends Component {
               <ImageProfile
                 id={currentImageId}
                 user={user}
+                msgAlert={this.msgAlert}
               />
             )
           }} />

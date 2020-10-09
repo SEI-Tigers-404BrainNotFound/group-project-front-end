@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
-import { Link } from 'react-router-dom'
+import messages from '../AutoDismissAlert/messages'
+// import { Link } from 'react-router-dom'
 // import BookUpdate from './Update'
 // import { Redirect } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 
@@ -46,16 +48,31 @@ class ImageProfile extends Component {
   }
   handleDelete = (event) => {
     event.preventDefault()
-    const imageId = this.state.id
+    const { msgAlert, history } = this.props
+    const userId = this.state.id
     // make a POST request to API /books route with book data
     axios({
-      url: `${apiUrl}/userImages/${imageId}`,
+      url: `${apiUrl}/userImages/${userId}`,
       method: 'DELETE',
       headers: {
         Authorization: 'Bearer ' + `${this.state.token}`
       }
     })
       .then(response => this.setState({ userImageId: this.state.createdUserImageId }))
+      .then(() => history.push('/user-profile'))
+      .then(() => msgAlert({
+        heading: 'Successfully Deleted an Image',
+        message: messages.deleteImageSuccess,
+        variant: 'success'
+      }))
+      .catch(error => {
+        this.setState({ fileName: '', description: '', tag: '' })
+        msgAlert({
+          heading: 'Could not delete the image, failed with error: ' + error.messages,
+          message: messages.deleteImageFailure,
+          variant: 'danger'
+        })
+      })
       .catch(console.error)
   }
   // handleUpdate = () => {
@@ -73,7 +90,6 @@ class ImageProfile extends Component {
       const url = 'https://404brainnotfound.s3.amazonaws.com/'
       jsx = (
         <div>
-        return (
           <div>
             <Card style={{ width: '24rem' }} >
               <div className="pt-2 pr-2 pl-2 pb-2 mb-0 bg-gradient-primary text-white">
@@ -90,7 +106,6 @@ class ImageProfile extends Component {
               </div>
             </Card>
           </div>
-        )
           <ul>
             <Button variant="primary" type="submit" onClick={this.handleDelete}>Delete</Button>
             <Link to={`/image-update/${this.state.id}`}><Button variant="primary" type="submit" onClick={console.log('this works')}>Edit</Button>
@@ -108,4 +123,4 @@ class ImageProfile extends Component {
   }
 }
 
-export default ImageProfile
+export default withRouter(ImageProfile)
