@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
-import { Redirect } from 'react-router-dom'
+import { Redirect, withRouter } from 'react-router-dom'
+import messages from '../AutoDismissAlert/messages'
 // import BookUpdate from './Update'
 // import { Redirect } from 'react-router-dom'
 
@@ -62,6 +63,7 @@ class ImageUpdate extends Component {
   }
   handleSubmit = (event) => {
     event.preventDefault()
+    const { msgAlert, history } = this.props
     // make a POST request to API /books route with book data
     axios({
       url: `${apiUrl}/userImages/${this.state.id}`,
@@ -76,6 +78,20 @@ class ImageUpdate extends Component {
       }
     })
       .then(response => this.setState({ isUpdated: true }))
+      .then(() => history.push('/image-profile/' + this.state.id))
+      .then(() => msgAlert({
+        heading: 'Successfully Updated an Image',
+        message: messages.updateImageSuccess,
+        variant: 'success'
+      }))
+      .catch(error => {
+        this.setState({ fileName: '', description: '', tag: '' })
+        msgAlert({
+          heading: 'Could not update the image, failed with error: ' + error.messages,
+          message: messages.updateImageFailure,
+          variant: 'danger'
+        })
+      })
       .catch(console.error)
   }
 
@@ -91,7 +107,6 @@ class ImageUpdate extends Component {
     } else {
       jsx = (
         <div>
-          <h2>Update your Post</h2>
           <form onSubmit={this.handleSubmit}>
             <input name="description" type="text" value={this.state.description} onChange={this.onDescriptionChangeHandler}/>
             <input name="tag" type="text" value={this.state.tag} onChange={this.onTagChangeHandler}/>
@@ -109,4 +124,4 @@ class ImageUpdate extends Component {
   }
 }
 
-export default ImageUpdate
+export default withRouter(ImageUpdate)
