@@ -7,5 +7,7 @@ export default {
   changePasswordSuccess: 'Password changed successfully!',
   changePasswordFailure: 'Failed to change passwords. Check your old password and try again.',
   uploadImageSuccess: 'Image was successfully uploaded! Check your profile to see the new image!',
-  uploadImageFailure: 'Could not upload the photo!'
+  uploadImageFailure: 'Could not upload the photo!',
+  deleteImageSuccess: 'Deleted the image successfully',
+  deleteImageFailure: 'Could not delete the photo!'
 }
