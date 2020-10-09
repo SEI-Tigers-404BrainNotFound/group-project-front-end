@@ -12,6 +12,12 @@ h2 {
 body {
   background-color: black;
 }
+
+.cards {
+  margin-bottom: 10px;
+  align-self: center;
+}
+
 .grid {
   background-color: transparent;
   float: none;
@@ -22,8 +28,30 @@ body {
   padding: 10px;
 }
 
+.profile {
+  max-width: 1000px;
+}
+.profile-container {
+  display: flex;
+  max-width: 1000px;
+  flew-wrap: wrap;
+  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fill,minmax(293px, 1fr));
+}
+
 .image {
   height: 293px;
   width: 293px;
   object-fit: cover;
+}
+
+.image:hover {
+  filter: opacity(.5);
+}
+
+.newsFeed {
+  display: flex;
+  flex-direction: column;
+  align: center;
 }
