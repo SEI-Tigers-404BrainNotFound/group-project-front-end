@@ -65,7 +65,7 @@ class App extends Component {
             <ProfileNew user={user} />
           )} />
           <AuthenticatedRoute user={user} exact path='/upload-image' render={() => (
-            <UploadImage user={user} />
+            <UploadImage msgAlert={this.msgAlert} user={user} />
           )} />
           <AuthenticatedRoute user={user} exact path='/image-profile/:id' render={(userImageProps) => {
             const { match } = userImageProps
