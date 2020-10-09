@@ -64,7 +64,7 @@ class App extends Component {
             <ProfileNew user={user} />
           )} />
           <AuthenticatedRoute user={user} exact path='/upload-image' render={() => (
-            <UploadImage user={user} />
+            <UploadImage msgAlert={this.msgAlert} user={user} />
           )} />
         </main>
       </Fragment>

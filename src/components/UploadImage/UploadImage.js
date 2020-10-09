@@ -2,8 +2,10 @@ import React from 'react'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
 // import { Redirect } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
+import messages from '../AutoDismissAlert/messages'
 class UploadImage extends React.Component {
   constructor (props) {
     super(props)
@@ -55,6 +57,7 @@ class UploadImage extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault()
+    const { msgAlert, history } = this.props
     const data = new FormData()
     data.append('photoupload', this.state.file)
     data.append('filename', this.state.fileName)
@@ -73,6 +76,20 @@ class UploadImage extends React.Component {
         createdUserImageId: response.data.userImage._id
       })
       )
+      .then(() => msgAlert({
+        heading: 'Upload Image Success',
+        message: messages.uploadImageSuccess,
+        variant: 'success'
+      }))
+      .then(() => history.push('/user-profile'))
+      .catch(error => {
+        this.setState({ fileName: '', description: '', tag: '' })
+        msgAlert({
+          heading: 'Could not upload the image, failed with error: ' + error.messages,
+          message: messages.uploadImageFailure,
+          variant: 'danger'
+        })
+      })
   }
   render () {
     // const file = document.getElementById("photoupload").files[0]
@@ -92,4 +109,4 @@ class UploadImage extends React.Component {
     )
   }
 }
-export default UploadImage
+export default withRouter(UploadImage)
