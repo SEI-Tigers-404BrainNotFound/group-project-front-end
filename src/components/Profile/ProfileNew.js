@@ -14,6 +14,7 @@ class ProfileIndex extends React.Component {
       token: this.props.user.token
     } // this.state
   } // constructor
+
   componentDidMount () {
     console.log(this.state.token)
     axios({
@@ -32,6 +33,11 @@ class ProfileIndex extends React.Component {
       })
       .catch(console.error)
   } // componentDidMount
+
+  clickHandler = (event) => {
+    event.preventDefault()
+    console.log('hello' + event.target.value)
+  }
   render () {
     console.log(this.props)
     let jsx
@@ -48,7 +54,7 @@ class ProfileIndex extends React.Component {
         <div className='profile-container'>
           {this.state.userImages.map(userImage => {
             return <Col key={userImage._id} size="4" className="grid"><Link to={`/userImages/${userImage._id}`}>
-              <Image className="image" variant="top" src={url + userImage.fileName} />
+              <Image className="image" variant="top" src={url + userImage.fileName} onClick={this.clickHandler}/>
             </Link>
             </Col>
           })}
@@ -56,8 +62,8 @@ class ProfileIndex extends React.Component {
       )
     }
     return (
-      <div>
-        <h2>Profile</h2>
+      <div className='profile'>
+        <h2>{this.props.user.email}</h2>
         {jsx}
       </div>
     )
