@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
+import messages from '../AutoDismissAlert/messages'
 // import { Link } from 'react-router-dom'
 // import BookUpdate from './Update'
 // import { Redirect } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 
@@ -46,6 +48,7 @@ class ImageProfile extends Component {
   }
   handleDelete = (event) => {
     event.preventDefault()
+    const { msgAlert, history } = this.props
     const userId = this.state.id
     // make a POST request to API /books route with book data
     axios({
@@ -56,6 +59,20 @@ class ImageProfile extends Component {
       }
     })
       .then(response => this.setState({ userImageId: this.state.createdUserImageId }))
+      .then(() => history.push('/user-profile'))
+      .then(() => msgAlert({
+        heading: 'Successfully Deleted an Image',
+        message: messages.deleteImageSuccess,
+        variant: 'success'
+      }))
+      .catch(error => {
+        this.setState({ fileName: '', description: '', tag: '' })
+        msgAlert({
+          heading: 'Could not delete the image, failed with error: ' + error.messages,
+          message: messages.deleteImageFailure,
+          variant: 'danger'
+        })
+      })
       .catch(console.error)
   }
 
@@ -69,7 +86,6 @@ class ImageProfile extends Component {
       const url = 'https://404brainnotfound.s3.amazonaws.com/'
       jsx = (
         <div>
-        return (
           <div>
             <Card style={{ width: '24rem' }} >
               <div className="pt-2 pr-2 pl-2 pb-2 mb-0 bg-gradient-primary text-white">
@@ -86,9 +102,9 @@ class ImageProfile extends Component {
               </div>
             </Card>
           </div>
-        )
           <ul>
             <Button variant="primary" type="submit" onClick={this.handleDelete}>Delete</Button>
+            <Button variant="primart" type="submit" onClick={this.handleUpdate}>Update</Button>
           </ul>
         </div>
       )
@@ -102,4 +118,4 @@ class ImageProfile extends Component {
   }
 }
 
-export default ImageProfile
+export default withRouter(ImageProfile)
