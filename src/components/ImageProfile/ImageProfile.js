@@ -116,7 +116,7 @@ class ImageProfile extends Component {
     }
     return (
       <div>
-        <h2>Book Page</h2>
+        <h2>Image Page</h2>
         {jsx}
       </div>
     )

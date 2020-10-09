@@ -9,5 +9,7 @@ export default {
   uploadImageSuccess: 'Image was successfully uploaded! Check your profile to see the new image!',
   uploadImageFailure: 'Could not upload the photo!',
   deleteImageSuccess: 'Deleted the image successfully',
-  deleteImageFailure: 'Could not delete the photo!'
+  deleteImageFailure: 'Could not delete the photo!',
+  updateImageSuccess: 'Succesfully updated the image!',
+  updateImageFailure: 'Could not update the image!'
 }

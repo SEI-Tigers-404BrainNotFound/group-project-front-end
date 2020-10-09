@@ -86,6 +86,7 @@ class App extends Component {
               <ImageUpdate
                 id={currentImageId}
                 user={user}
+                msgAlert={this.msgAlert}
               />
             )
           }} />
