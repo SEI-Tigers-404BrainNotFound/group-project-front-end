@@ -12,6 +12,7 @@ import NewsFeed from '../NewsFeed/NewsFeed'
 import ProfileNew from '../Profile/ProfileNew'
 import UploadImage from '../UploadImage/UploadImage'
 import ImageProfile from '../ImageProfile/ImageProfile'
+import ImageUpdate from '../ImageUpdate/ImageUpdate'
 
 class App extends Component {
   constructor () {
@@ -72,6 +73,16 @@ class App extends Component {
             const currentImageId = match.params.id
             return (
               <ImageProfile
+                id={currentImageId}
+                user={user}
+              />
+            )
+          }} />
+          <AuthenticatedRoute user={user} exact path='/image-update/:id' render={(userImageProps) => {
+            const { match } = userImageProps
+            const currentImageId = match.params.id
+            return (
+              <ImageUpdate
                 id={currentImageId}
                 user={user}
               />

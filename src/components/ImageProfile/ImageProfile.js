@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
-// import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 // import BookUpdate from './Update'
 // import { Redirect } from 'react-router-dom'
 import Card from 'react-bootstrap/Card'
@@ -46,10 +46,10 @@ class ImageProfile extends Component {
   }
   handleDelete = (event) => {
     event.preventDefault()
-    const userId = this.state.id
+    const imageId = this.state.id
     // make a POST request to API /books route with book data
     axios({
-      url: `${apiUrl}/userImages/${userId}`,
+      url: `${apiUrl}/userImages/${imageId}`,
       method: 'DELETE',
       headers: {
         Authorization: 'Bearer ' + `${this.state.token}`
@@ -58,6 +58,10 @@ class ImageProfile extends Component {
       .then(response => this.setState({ userImageId: this.state.createdUserImageId }))
       .catch(console.error)
   }
+  // handleUpdate = () => {
+  //   event.preventDefault()
+  //   <Redirect to={`/image-update/${this.state.id}`} />
+  // }
 
   render () {
     let jsx
@@ -89,6 +93,8 @@ class ImageProfile extends Component {
         )
           <ul>
             <Button variant="primary" type="submit" onClick={this.handleDelete}>Delete</Button>
+            <Link to={`/image-update/${this.state.id}`}><Button variant="primary" type="submit" onClick={console.log('this works')}>Edit</Button>
+            </Link>
           </ul>
         </div>
       )
