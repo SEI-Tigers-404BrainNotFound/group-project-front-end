@@ -63,17 +63,21 @@ const getFormattedTimeString = timeStringToProcess => {
   const hourNumber = timeStringComponents[hourNumberIndex]
   const minuteNumber = timeStringComponents[minuteNumberIndex]
 
-  // Strip any leading zero from the hour, such as 02.
-  let hour = hourNumber.replace(/^(0+)/, '')
+  // Strip any leading zero from the hour, such as 02, unlesss the 
+  // hour is 00 (12am).
+  let hour = hourNumber
 
-  let morningOrNight = 'am'
+  if (hourNumber !== '00') hour = hourNumber.replace(/^(0+)/, '')
+  else hour = '12'
 
-  if (hour >= 12) morningOrNight = 'pm'
+  let amOrPm = 'am'
+
+  if (hourNumber >= 12) amOrPm = 'pm'
 
   // Convert military time to standard time.
-  if (hour >= 13) hour -= 12
+  if (hourNumber >= 13) hour -= 12
 
-  return `${hour}:${minuteNumber}${morningOrNight}`
+  return `${hour}:${minuteNumber}${amOrPm}`
 }
 
 // Displays date and time based upon the following string format:
