@@ -63,7 +63,7 @@ const getFormattedTimeString = timeStringToProcess => {
   const hourNumber = timeStringComponents[hourNumberIndex]
   const minuteNumber = timeStringComponents[minuteNumberIndex]
 
-  // Strip any leading zero from the hour, such as 02, unlesss the 
+  // Strip any leading zero from the hour, such as 02, unlesss the
   // hour is 00 (12am).
   let hour = hourNumber
 
