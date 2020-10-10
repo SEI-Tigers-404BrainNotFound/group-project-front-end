@@ -89,7 +89,7 @@ class ImageProfile extends Component {
     } else {
       const url = 'https://404brainnotfound.s3.amazonaws.com/'
       jsx = (
-        <div>
+        <div className="image-profile-container">
           <div>
             <Card style={{ width: '24rem' }} >
               <div className="pt-2 pr-2 pl-2 pb-2 mb-0 bg-gradient-primary text-white">

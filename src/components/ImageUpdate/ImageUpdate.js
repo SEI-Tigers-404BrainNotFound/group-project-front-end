@@ -3,6 +3,7 @@ import axios from 'axios'
 import apiUrl from '../../apiConfig'
 import { Redirect, withRouter } from 'react-router-dom'
 import messages from '../AutoDismissAlert/messages'
+import Card from 'react-bootstrap/Card'
 // import BookUpdate from './Update'
 // import { Redirect } from 'react-router-dom'
 
@@ -100,6 +101,7 @@ class ImageUpdate extends Component {
       return <Redirect to ={`/image-profile/${this.state.id}`} />
     }
     let jsx
+    const url = 'https://404brainnotfound.s3.amazonaws.com/'
     // while the book is loading
     if (this.state.isLoaded === false) {
       jsx = <p>Loading...</p>
@@ -107,11 +109,27 @@ class ImageUpdate extends Component {
     } else {
       jsx = (
         <div>
-          <form onSubmit={this.handleSubmit}>
-            <input name="description" type="text" value={this.state.description} onChange={this.onDescriptionChangeHandler}/>
-            <input name="tag" type="text" value={this.state.tag} onChange={this.onTagChangeHandler}/>
-            <input type="submit" value="Submit" />
-          </form>
+          <div className="image-profile-container">
+            <div>
+              <Card style={{ width: '24rem' }} >
+                <div className="pt-2 pr-2 pl-2 pb-2 mb-0 bg-gradient-primary text-white">
+                  <Card.Header>{this.state.owner.email}</Card.Header>
+                  <div className="bg-gradient-dark">
+                    <Card.Img variant="top" src={url + this.state.fileName} />
+                    <Card.Body>
+                      <form onSubmit={this.handleSubmit}>
+                        <Card.Text><input name="description" type="text" value={this.state.description} onChange={this.onDescriptionChangeHandler}/></Card.Text>
+                        <Card.Text>
+                          <input name="tag" type="text" value={this.state.tag} onChange={this.onTagChangeHandler}/>
+                          <input type="submit" value="Submit" />
+                        </Card.Text>
+                      </form>
+                    </Card.Body>
+                  </div>
+                </div>
+              </Card>
+            </div>
+          </div>
         </div>
       )
     }

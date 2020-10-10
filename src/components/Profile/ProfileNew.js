@@ -67,7 +67,10 @@ class ProfileIndex extends React.Component {
     }
     return (
       <div className='profile'>
-        <h2>{this.props.user.email}</h2>
+        <div>
+          <h2>{this.props.user.email}</h2>
+          <h3>{`${userImageArray.length} posts`}</h3>
+        </div>
         {jsx}
       </div>
     )
