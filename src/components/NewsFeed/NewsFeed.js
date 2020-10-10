@@ -5,6 +5,7 @@ import apiUrl from '../../apiConfig'
 // import Image from 'react-bootstrap/Image'
 // import { Link } from 'react-router-dom'
 import Card from 'react-bootstrap/Card'
+import DateTimeDisplay from './../DateTimeDisplay/DateTimDisplay'
 
 class NewsFeed extends React.Component {
   constructor (props) {
@@ -58,7 +59,7 @@ class NewsFeed extends React.Component {
                       {userImage.tag}
                     </Card.Text>
                     <Card.Text>
-                      {userImage.createdAt.match(/^\d{4}-\d{2}-\d{2}/)[0]}
+                      <DateTimeDisplay dateTimeString={userImage.createdAt}></DateTimeDisplay>
                     </Card.Text>
                   </Card.Body>
                 </div>
