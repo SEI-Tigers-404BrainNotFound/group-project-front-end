@@ -25,7 +25,7 @@ class ImageUpdate extends Component {
   } // constructor
   componentDidMount () {
     axios({
-      url: `${apiUrl}/userImages/` + this.props.id,
+      url: `${apiUrl}/userImages/` + this.state.id,
       method: 'GET',
       headers: {
         Authorization: 'Bearer ' + `${this.state.token}`
