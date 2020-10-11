@@ -5,7 +5,7 @@ import messages from '../AutoDismissAlert/messages'
 // import { Link } from 'react-router-dom'
 // import BookUpdate from './Update'
 // import { Redirect } from 'react-router-dom'
-import { withRouter, Link } from 'react-router-dom'
+// import { withRouter, Link } from 'react-router-dom'
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 
@@ -15,6 +15,7 @@ class ImageProfile extends Component {
     console.log(props)
     this.state = {
       isLoaded: false,
+      isUpdated: false,
       file: null,
       fileName: '',
       description: '',
@@ -34,23 +35,29 @@ class ImageProfile extends Component {
       }
     })
       .then(response => {
-        console.log(response.data)
         this.setState({
           isLoaded: true,
           file: null,
           fileName: response.data.userImages.fileName,
           description: response.data.userImages.description,
           tag: response.data.userImages.tag,
-          owner: response.data.userImages.owner
+          owner: response.data.userImages.owner,
+          formShown: false
         })
       })
       .catch(console.error)
   }
-  handleDelete = (event) => {
-    event.preventDefault()
+
+  onEditButtonClick = () => {
+    this.setState({ formShown: true })
+  }
+  onCancelButtonClick = () => {
+    this.setState({ formShown: false })
+  }
+
+  handleDelete = () => {
     const { msgAlert, history } = this.props
     const userId = this.state.id
-    // make a POST request to API /books route with book data
     axios({
       url: `${apiUrl}/userImages/${userId}`,
       method: 'DELETE',
@@ -75,10 +82,60 @@ class ImageProfile extends Component {
       })
       .catch(console.error)
   }
-  // handleUpdate = () => {
-  //   event.preventDefault()
-  //   <Redirect to={`/image-update/${this.state.id}`} />
-  // }
+
+  onDescriptionChangeHandler = (event) => {
+    const userInput = event.target.value
+    // const userImageCopy = Object.assign({}, this.state.userImage)
+    // userImageCopy.description = userInput
+    this.setState({
+      // userImage: userImageCopy
+      description: userInput
+    })
+  }
+  onTagChangeHandler = (event) => {
+    const userInput = event.target.value
+    // const userImageCopy = Object.assign({}, this.state.userImage)
+    // userImageCopy.tag = userInput
+    this.setState({
+      // userImage: userImageCopy
+      tag: userInput
+    })
+  }
+  handleSubmit = (event) => {
+    event.preventDefault()
+    console.log(this.state.fileName)
+    const { msgAlert, history } = this.props
+    // make a POST request to API /books route with book data
+    axios({
+      url: `${apiUrl}/userImages/${this.state.id}`,
+      method: 'PATCH',
+      headers: { 'Authorization': `Bearer ${this.state.token}` },
+      data: {
+        userImage: {
+          fileName: this.state.fileName,
+          tag: this.state.tag,
+          description: this.state.description
+        }
+      }
+    })
+      .then(response => this.setState({ isUpdated: true }))
+      .then(() => history.push('/image-profile/' + this.state.id))
+      .then(() => msgAlert({
+        heading: 'Successfully Updated an Image',
+        message: messages.updateImageSuccess,
+        variant: 'success'
+      }))
+      .then(console.log(this.state.fileName))
+      .catch(error => {
+        this.setState({ fileName: '', description: '', tag: '' })
+        msgAlert({
+          heading: 'Could not update the image, failed with error: ' + error.messages,
+          message: messages.updateImageFailure,
+          variant: 'danger'
+        })
+      })
+      .catch(console.error)
+  }
 
   render () {
     let jsx
@@ -97,19 +154,35 @@ class ImageProfile extends Component {
                 <div className="bg-gradient-dark">
                   <Card.Img variant="top" src={url + this.state.fileName} />
                   <Card.Body>
-                    <Card.Title>{this.state.description}</Card.Title>
-                    <Card.Text>
-                      {this.state.tag}
-                    </Card.Text>
+                    {!this.state.formShown &&
+                    <div>
+                      <Card.Title>{this.state.description}</Card.Title>
+                      <Card.Text>
+                        {this.state.tag}
+                      </Card.Text>
+                    </div>
+                    }
+                    {this.state.formShown &&
+                      <form onSubmit={this.handleSubmit}>
+                        <Card.Text>
+                          <input name="description" type="text" value={this.state.description} onChange={this.onDescriptionChangeHandler}/>
+                        </Card.Text>
+                        <Card.Text>
+                          <input name="tag" type="text" value={this.state.tag} onChange={this.onTagChangeHandler}/>
+                          <input type="submit" value="Submit" />
+                          <input type="button" value="Cancel" onClick={this.onCancelButtonClick}/>
+                        </Card.Text>
+                      </form>
+                    }
                   </Card.Body>
                 </div>
               </div>
             </Card>
           </div>
           <ul>
-            <Button variant="primary" type="submit" onClick={this.handleDelete}>Delete</Button>
-            <Link to={`/image-update/${this.state.id}`}><Button variant="primary" type="submit" onClick={console.log('this works')}>Edit</Button>
-            </Link>
+            <Button variant="primary" type="button" onClick={this.handleDelete}>Delete</Button>
+            {/* <Link to={`/image-update/${this.state.id}`}> */}
+            <Button variant="primary" type="button" onClick={this.onEditButtonClick}>Edit</Button>
           </ul>
         </div>
       )
@@ -123,4 +196,4 @@ class ImageProfile extends Component {
   }
 }
 
-export default withRouter(ImageProfile)
+export default ImageProfile
