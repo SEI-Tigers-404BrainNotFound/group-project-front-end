@@ -1,129 +1,64 @@
 [![General Assembly Logo](https://camo.githubusercontent.com/1a91b05b8f4d44b5bbfb83abac2b0996d8e26c92/687474703a2f2f692e696d6775722e636f6d2f6b6538555354712e706e67)](https://generalassemb.ly/education/web-development-immersive)
 
-# react-auth-template
+# InstaSHAM
 
-A front-end framework template for starting projects with a recent version of
-either the [Rails API Template](https://git.generalassemb.ly/ga-wdi-boston/rails-api-template)
-or the [Express API Template](https://git.generalassemb.ly/ga-wdi-boston/express-api-template).
+This is a full stack application that connects with a database and AWS to allow users to upload and store files.  The application allows you to sign up for your own individual account with an e-mail address and password.  The password is hashed by the system so that it is more secure.  Once signed in the user can upload, edit, and delete files from their account.  The files are uploaded with a description and a tag/tags that are inputted by the user. The file is also given a timestamp so that they know when the file was uploaded, as well as the last time that the metadata was updated.
 
-## Installation
+Once a picture has been uploaded, it is added to the user's profile.  The user's profile is updated in a chornological order with the most recent photo being shown first in the grid.  The grid is a thumbnail view of the photos.  When a photo is clicked, the user is sent to an image page that gives them an option to edit the metadata.  They are given timestamps on when the image was uploaded and it's most recent update. The user is also able to delete the image from this page.
 
-1. [Download](../../archive/master.zip) this template.
-1. Unzip and rename the template directory (`unzip ~/Downloads/react-auth-template-master.zip`).
-1. Move into the new project and `git init`.
-1. Empty [`README.md`](README.md) and fill with your own content.
-1. Replace `react-auth-template` in `package.json` with your
-   projects name.
-1. Replace the `"homepage"` field in `package.json` with your (public) Github
-   account name and repository name.
-1. Install dependencies with `npm install`.
-1. `git add` and `git commit` your changes.
-1. Run the development server with `npm start`.
+When the picture is uploaded, it also shows up on the news feed in a chornological order, with the most recent item at the top of the list.  The news feed is where the user can see all user's photos in the database.  On the top of each card, the user can see the e-mail address of the user who uploaded the file.
 
-## Deployment
+## Planning Story
 
-Before deploying, you first need to make sure the `homepage` key in your
-`package.json` is pointing to the correct value. It should be the url of your
-deployed application.
+The first step in the process of planning the site was to identify the functionality of the site based on requirements and the user stories.  We created an ERD and discussed the user experience.  We developed wireframs for the layout we wanted to use.  Based on the user stories, we identified that the requested website was similar to instagram.  We really liked the grid layout and the newfeed idea that Instagram uses, and put our own style on it.
 
-To deploy you should first make sure you are on the `master` branch with a
-clean working directory, then you can run `npm run deploy` and wait to see if
-it runs successfully.
+After setting up the authorization tasks we split up our group into pairs.  Two of us worked on back end functionality, while two of us moved on to the front end to work on styling and UI.  Ralph and Rob worked on the UI to start working on the layout of the page, the image cards.  Ergun and Scott worked on back end functionality and then moved on to the newsfeed. Scott was able to get us set up with his AWS account and handled all AWS needs.  After finishing up the layout and design, Rob and Ralph worked on the profile page, edit and delete function, and the image pages.
 
-## About
+Communication was necessary between each teammate to ensure that there was no one conflicting with the work of another.  This communication was effective in ensuring that each member was contributing to the project and that there were no conflicts in design.
 
-This template is derived from GA Boston's [react-template](https://git.generalassemb.ly/ga-wdi-boston/react-template).
-Most of the development dependencies, such as linters, SCSS compiler, Webpack
-config, NPM scripts, etc in this repo come from there.
+Some of the challenges that we faced included:  setting up the AWS upload, getting the date to show in an appropriate format, and the update image metadata functionality.
 
-It includes all the components and routes needed to sign up, sign in, change
-passwords, and sign out of an API built with either template linked above, with
-no need for modification.
+### User stories
+    1.  As an unregistered user, I would like to sign up with email and password.
+    2.  As a registered user, I would like to sign in with email and password.
+    3.  As a signed in user, I would like to change password.
+    4.  As a signed in user, I would like to sign out.
+    5.  As a signed in user, I would like to upload an image to AWS.
+    6.  As a signed in user, I would like to update the meta-data of my image on AWS.
+    7.  As a signed in user, I would like to see the name of all images on AWS.
+    8.  As a signed in user, I would like to see the thumbnail of all images on AWS.
+    9.  As a signed in user, I would like to delete the reference of my image from the database.
+    10.  As a signed in user, I would like to see the following meta-data for any image:
+      date created/uploaded
+      date modified
+      owner (user who uploaded the image)
+      tag
 
-**NOTE**: You should customize the included components to suit you app! They're
-provided as a guide and a bare minimum of functionality and style. Consider
-changing the provided SCSS styles, modifying the auth code, improving the flash
-messages, etc.
+### Technolgies Used
+    1. react
+    2. html
+    3. JavaScript
+    4. jsx
+    5. bootstrap
+    6. json
+    7. MongoDB
+    8. Mongoose
+    9. axios
+    10. Passport JS
+    11. Express JS
+    12. Bcrypt
+    13. CSS/Sass
 
-## Structure
+### Links
+  [Depoloyed Frontend](https://sei-tigers-404brainnotfound.github.io/group-project-front-end/#/) <br>
+  [Deployed Backend](https://git.heroku.com/young-gorge-48445.git) <br>
+  [Frontend Github Repository](https://github.com/SEI-Tigers-404BrainNotFound/group-project-front-end)<br>
+  [Backend Github Repository](https://github.com/SEI-Tigers-404BrainNotFound/group-project-back-end)
 
-The top-level `App` component stores the currently authenticated
-user in state, as well as data related to the flash messages. `App` renders the
-`Header` component, and a list of routes, each of which render a component from
-`src/components`. The `src/api` directory has a component file, `auth.js`, which
-contains all the needed `axios` calls pertaining to authentication.
+### Unsolved Problems/Reach Goals
+    - Add search by Tag functionality
+    - Add the ability to create profile pictures and bios
+    - Like and comment functionality on other people's posts.
 
-You can follow this pattern in your app as well. For instance, if you are making
-an app that keeps track of books, you might want a `src/api/books.js`, which
-contains its own `axios` call pertaining to your books resource CRUD actions.
-Using a separate directory within `components` for each individual component you
-add makes it easy to locate and update components and has the added benefit of
-making it easy to create custom styles that apply to that specific component.
-To apply component specific styles, add a file to the component's directory such
-as `ComponentName.scss` and then import it directly into the component with
-`import './ComponentName.scss'`.  This will keep your styles modularized and
-make it easier to make changes at the component level.
-
-## Features
-
-### `<AuthenticatedRoute />`
-
-This template contains a handy component for creating routes that require a
-user to be authenticated before visiting. This component lives in
-`src/auth/components/AuthenticatedRoute.js` and is already required in `App`.
-It's a thin wrapper around React Router's `<Route />` component. The only
-difference is that it expects a prop called `user`, and if that prop is falsy,
-it will render a `<Redirect />` that takes the user to `/`. **To use
-it, you must pass it the user as a prop!**
-
-It supports both the `component=` and `render=` attributes, but like `<Route />`
-it will not forward props to the component if you use `component=`.
-
-### `<AutoAlertDismiss />` Component
-
-This template also already contains a component that displays user messages.
-Messages are configurable via redux actions.  This component can be found in
-`src/components/AutoAlertDismiss/AutoAlertDismiss.js`. **There is no need to add
-this component to your app. It is already required in `App`.**  A single
-component instance is used to manage all alerts application-wide.
-
-The alert can be used by passing the `alertMsg` method to a rendered route.  The
-`alertMsg` method expects an object with a `heading`, `message`, and a `variant` property.
-
-Use this component in conjunction with the `messages.js` file in the same
-directory to create and manage all of your application messages in one place.
-
-The `variant` property must be a Bootstrap alert variant, as this component is merely a
-wrapper around the [react-bootstrap Alert
-component](https://react-bootstrap.github.io/components/alerts/).  The types it
-will accept are: 'primary', 'secondary', 'success', 'danger', 'warning', 'info',
-'light', and 'dark'.
-
- To change the duration of the message, replace `5000` with a value of your
- choice (in milliseconds) in this component's `componentDidMount` method.
-
-### `src/apiConfig.js`
-
-Just like in
-[browser-template](https://git.generalassemb.ly/ga-wdi-boston/browser-template),
-this file will determine whether you're in a production or development
-environment and choose an API URL accordingly. Don't forget to replace the
-`production` URL with your deployed API's URL.
-
-## Tasks
-
-Developers should run these often!
-
-- `npm run nag`: runs code quality analysis tools on your code and complains.
-- `npm run make-standard`: reformats all your code in the JavaScript Standard
-  Style.
-- `npm run start`: generates bundles, watches, and livereloads.
-- `npm run build`: place bundled styles and scripts where `index.html` can find
-    them
-- `npm run deploy`: builds and deploys master branch
-
-## [License](LICENSE)
-
-1. All content is licensed under a CC­BY­NC­SA 4.0 license.
-1. All software code is licensed under GNU GPLv3. For commercial use or
-    alternative licensing, please contact legal@ga.co.
+### Images
+![wireframe](https://i.imgur.com/Y1AM1SU.jpg)
