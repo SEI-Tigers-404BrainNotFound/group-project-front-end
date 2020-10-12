@@ -51,7 +51,7 @@ Some of the challenges that we faced included:  setting up the AWS upload, getti
 
 ### Links
   [Depoloyed Frontend](https://sei-tigers-404brainnotfound.github.io/group-project-front-end/#/) <br>
-  [Deployed Backend](https://git.heroku.com/young-gorge-48445.git) <br>
+  [Deployed Backend](https://git.heroku.com/morning-stream-98202.git) <br>
   [Frontend Github Repository](https://github.com/SEI-Tigers-404BrainNotFound/group-project-front-end)<br>
   [Backend Github Repository](https://github.com/SEI-Tigers-404BrainNotFound/group-project-back-end)
 
