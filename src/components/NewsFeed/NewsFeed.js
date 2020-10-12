@@ -5,7 +5,7 @@ import apiUrl from '../../apiConfig'
 // import Image from 'react-bootstrap/Image'
 // import { Link } from 'react-router-dom'
 import Card from 'react-bootstrap/Card'
-import DateTimeDisplay from './../DateTimeDisplay/DateTimDisplay'
+import DateTimeDisplay from './../DateTimeDisplay/DateTimeDisplay'
 
 class NewsFeed extends React.Component {
   constructor (props) {

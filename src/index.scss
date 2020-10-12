@@ -2,15 +2,16 @@ $enable-gradients: true;
 $primary: #8B0000;
 @import '~bootstrap/scss/bootstrap';
 h1 {
-  color: white;
+  color: #f5f5f5;
   text-align: center;
 }
 h2 {
-  color: white;
+  color: #f5f5f5;
   text-align: center;
 }
 body {
   background-color: black;
+  color: #f5f5f5;
 }
 
 .cards {
@@ -30,11 +31,12 @@ body {
 
 .profile {
   max-width: 1000px;
+  align-self: center;
 }
 .profile-container {
   display: flex;
   max-width: 1000px;
-  flew-wrap: wrap;
+  flex-wrap: wrap;
   justify-content: center;
   display: grid;
   flex-direction: column-reverse;
@@ -55,4 +57,9 @@ body {
   display: flex;
   flex-direction: column;
   align: center;
+}
+
+.image-profile-container {
+  display: flex;
+  justify-content: center;
 }
