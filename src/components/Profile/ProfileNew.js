@@ -8,9 +8,6 @@ import { Link } from 'react-router-dom'
 class ProfileIndex extends React.Component {
   constructor (props) {
     super(props)
-    console.log('props = ', props)
-    console.log('params = ', this.params)
-    console.log('match = ', this.match)
     this.state = {
       isLoaded: false,
       userImages: [],
@@ -19,7 +16,6 @@ class ProfileIndex extends React.Component {
   } // constructor
 
   componentDidMount () {
-    console.log(this.state.token)
     axios({
       url: `${apiUrl}/userImages`,
       method: 'GET',
@@ -28,19 +24,14 @@ class ProfileIndex extends React.Component {
       }
     })
       .then(response => {
-        console.log(response.data.userImages)
         this.setState({
           isLoaded: true,
           userImages: response.data.userImages
         })
       })
       .catch(console.error)
-  } // componentDidMount
+  }
 
-  // clickHandler = (event) => {
-  //   event.preventDefault()
-  //   console.log('hello' + event.target.value)
-  // }
   render () {
     const url = 'https://404brainnotfound.s3.amazonaws.com/'
     const userImageArray = this.state.userImages.map(userImage => {
@@ -49,7 +40,7 @@ class ProfileIndex extends React.Component {
       </Link>
       </Col>
     })
-    console.log(this.props)
+
     let jsx
     // while the books are loading
     if (this.state.isLoaded === false) {

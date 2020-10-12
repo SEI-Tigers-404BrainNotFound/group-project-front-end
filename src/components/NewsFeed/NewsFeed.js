@@ -1,9 +1,6 @@
 import React from 'react'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
-// import Col from 'react-bootstrap/Col'
-// import Image from 'react-bootstrap/Image'
-// import { Link } from 'react-router-dom'
 import Card from 'react-bootstrap/Card'
 import DateTimeDisplay from './../DateTimeDisplay/DateTimeDisplay'
 
@@ -17,7 +14,6 @@ class NewsFeed extends React.Component {
     } // this.state
   } // constructor
   componentDidMount () {
-    console.log(this.state.token)
     axios({
       url: `${apiUrl}/userImages/orderdByDateDesc`,
       method: 'GET',
@@ -26,7 +22,6 @@ class NewsFeed extends React.Component {
       }
     })
       .then(response => {
-        console.log(response.data.userImages)
         this.setState({
           isLoaded: true,
           userImages: response.data.userImages

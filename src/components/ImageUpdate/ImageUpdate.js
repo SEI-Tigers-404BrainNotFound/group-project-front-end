@@ -4,8 +4,6 @@ import apiUrl from '../../apiConfig'
 import { Redirect, withRouter } from 'react-router-dom'
 import messages from '../AutoDismissAlert/messages'
 import Card from 'react-bootstrap/Card'
-// import BookUpdate from './Update'
-// import { Redirect } from 'react-router-dom'
 
 class ImageUpdate extends Component {
   constructor (props) {
@@ -32,7 +30,6 @@ class ImageUpdate extends Component {
       }
     })
       .then(response => {
-        console.log(response.data)
         this.setState({
           isLoaded: true,
           file: null,

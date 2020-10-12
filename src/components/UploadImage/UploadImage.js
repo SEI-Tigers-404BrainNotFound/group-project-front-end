@@ -1,15 +1,14 @@
 import React from 'react'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
-// import { Redirect } from 'react-router-dom'
 import { withRouter } from 'react-router-dom'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import messages from '../AutoDismissAlert/messages'
+
 class UploadImage extends React.Component {
   constructor (props) {
     super(props)
-    console.log(this.props.user)
     this.state = {
       // userImage: {
       file: null,

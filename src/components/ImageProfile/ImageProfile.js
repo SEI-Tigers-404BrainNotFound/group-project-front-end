@@ -2,10 +2,6 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
 import messages from '../AutoDismissAlert/messages'
-// import { Link } from 'react-router-dom'
-// import BookUpdate from './Update'
-// import { Redirect } from 'react-router-dom'
-// import { withRouter, Link } from 'react-router-dom'
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 import DateTimeDisplay from './../DateTimeDisplay/DateTimeDisplay'
@@ -13,7 +9,6 @@ import DateTimeDisplay from './../DateTimeDisplay/DateTimeDisplay'
 class ImageProfile extends Component {
   constructor (props) {
     super(props)
-    console.log(props)
     this.tempDescription = ''
     this.tempTag = ''
     this.state = {
@@ -111,7 +106,6 @@ class ImageProfile extends Component {
   }
   handleSubmit = (event) => {
     event.preventDefault()
-    console.log(this.state.fileName)
     const { msgAlert } = this.props
     // make a POST request to API /books route with book data
     axios({
@@ -132,7 +126,6 @@ class ImageProfile extends Component {
         message: messages.updateImageSuccess,
         variant: 'success'
       }))
-      .then(console.log(this.state.fileName))
       .catch(error => {
         this.setState({ fileName: '', description: '', tag: '' })
         msgAlert({
