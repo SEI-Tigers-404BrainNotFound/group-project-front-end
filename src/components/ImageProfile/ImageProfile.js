@@ -172,7 +172,7 @@ class ImageProfile extends Component {
                     {this.state.formShown &&
                       <form onSubmit={this.handleSubmit}>
                         <Card.Text>
-                          <input name="description" type="text" value={this.state.description} onChange={this.onDescriptionChangeHandler}/>
+                          <textarea rows="4" cols="40" name="description" type="text" value={this.state.description} onChange={this.onDescriptionChangeHandler}/>
                         </Card.Text>
                         <Card.Text>
                           <input name="tag" type="text" value={this.state.tag} onChange={this.onTagChangeHandler}/>
@@ -182,6 +182,7 @@ class ImageProfile extends Component {
                       </form>
                     }
                     <Card.Text>
+                      <br/>
                     Created on: &nbsp;
                       <DateTimeDisplay dateTimeString={this.state.createdAt}></DateTimeDisplay>
                     </Card.Text>

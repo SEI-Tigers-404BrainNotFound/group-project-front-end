@@ -54,6 +54,7 @@ class NewsFeed extends React.Component {
                       {userImage.tag}
                     </Card.Text>
                     <Card.Text>
+                      <br/>
                     Created on: &nbsp;
                       <DateTimeDisplay dateTimeString={userImage.createdAt}></DateTimeDisplay>
                     </Card.Text>
