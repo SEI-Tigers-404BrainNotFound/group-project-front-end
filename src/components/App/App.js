@@ -69,13 +69,14 @@ class App extends Component {
             <UploadImage msgAlert={this.msgAlert} user={user} />
           )} />
           <AuthenticatedRoute user={user} exact path='/image-profile/:id' render={(userImageProps) => {
-            const { match } = userImageProps
+            const { match, history } = userImageProps
             const currentImageId = match.params.id
             return (
               <ImageProfile
                 id={currentImageId}
                 user={user}
                 msgAlert={this.msgAlert}
+                history={history}
               />
             )
           }} />

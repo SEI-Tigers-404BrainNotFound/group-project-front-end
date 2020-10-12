@@ -19,7 +19,6 @@ class ImageProfile extends Component {
     this.state = {
       isLoaded: false,
       isUpdated: false,
-      isDeleted: false,
       file: null,
       fileName: '',
       description: '',
@@ -65,7 +64,7 @@ class ImageProfile extends Component {
   }
 
   handleDelete = () => {
-    const { msgAlert } = this.props
+    const { msgAlert, history } = this.props
     const userId = this.state.id
     axios({
       url: `${apiUrl}/userImages/${userId}`,
@@ -80,6 +79,7 @@ class ImageProfile extends Component {
         message: messages.deleteImageSuccess,
         variant: 'success'
       }))
+      .then(history.push('/user-profile'))
       .catch(error => {
         this.setState({ fileName: '', description: '', tag: '' })
         msgAlert({
@@ -159,8 +159,7 @@ class ImageProfile extends Component {
               <div className="pt-2 pr-2 pl-2 pb-2 mb-0 bg-gradient-primary text-white">
                 <Card.Header>{this.state.owner.email}</Card.Header>
                 <div className="bg-gradient-dark">
-                  { this.state.isDeleted &&
-                    <Card.Img variant="top" src={url + this.state.fileName} /> }
+                  <Card.Img variant="top" src={url + this.state.fileName} />
                   <Card.Body>
                     {!this.state.formShown &&
                     <div>
