@@ -107,7 +107,7 @@ const DateTimeDisplay = ({ dateTimeString }) => {
     `${getMonthFromMonthNumber(monthNumber)} ${dayNumber}, ${yearNumber}`
   const timeDisplay = `${getFormattedTimeString(timeString)}`
 
-  return <span>{ `${dateDisplay} ${timeDisplay}` }</span>
+  return <span>{ `${dateDisplay} ${timeDisplay} UTC` }</span>
 }
 
 export default DateTimeDisplay
