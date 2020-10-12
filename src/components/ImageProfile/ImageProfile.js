@@ -8,7 +8,7 @@ import messages from '../AutoDismissAlert/messages'
 // import { withRouter, Link } from 'react-router-dom'
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
-import DateTimeDisplay from './../DateTimeDisplay/DateTimeDisplay'
+import DateTimeDisplay from './../DateTimeDisplay/DateTimDisplay'
 
 class ImageProfile extends Component {
   constructor (props) {
@@ -19,6 +19,7 @@ class ImageProfile extends Component {
     this.state = {
       isLoaded: false,
       isUpdated: false,
+      isDeleted: false,
       file: null,
       fileName: '',
       description: '',
@@ -64,7 +65,7 @@ class ImageProfile extends Component {
   }
 
   handleDelete = () => {
-    const { msgAlert, history } = this.props
+    const { msgAlert } = this.props
     const userId = this.state.id
     axios({
       url: `${apiUrl}/userImages/${userId}`,
@@ -74,7 +75,6 @@ class ImageProfile extends Component {
       }
     })
       .then(response => this.setState({ userImageId: this.state.createdUserImageId }))
-      .then(() => history.push('/user-profile'))
       .then(() => msgAlert({
         heading: 'Successfully Deleted an Image',
         message: messages.deleteImageSuccess,
@@ -159,7 +159,8 @@ class ImageProfile extends Component {
               <div className="pt-2 pr-2 pl-2 pb-2 mb-0 bg-gradient-primary text-white">
                 <Card.Header>{this.state.owner.email}</Card.Header>
                 <div className="bg-gradient-dark">
-                  <Card.Img variant="top" src={url + this.state.fileName} />
+                  { this.state.isDeleted &&
+                    <Card.Img variant="top" src={url + this.state.fileName} /> }
                   <Card.Body>
                     {!this.state.formShown &&
                     <div>
