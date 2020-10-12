@@ -122,8 +122,11 @@ class ImageProfile extends Component {
       }
     })
       .then(response => {
-        console.log(response)
-        this.setState({ isUpdated: true, formShown: false })
+        this.setState({
+          isUpdated: true,
+          formShown: false,
+          updatedAt: response.data.userImages.updatedAt
+        })
       })
       .then(() => msgAlert({
         heading: 'Successfully Updated an Image',
