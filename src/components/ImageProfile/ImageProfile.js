@@ -8,7 +8,7 @@ import messages from '../AutoDismissAlert/messages'
 // import { withRouter, Link } from 'react-router-dom'
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
-import DateTimeDisplay from './../DateTimeDisplay/DateTimDisplay'
+import DateTimeDisplay from './../DateTimeDisplay/DateTimeDisplay'
 
 class ImageProfile extends Component {
   constructor (props) {
