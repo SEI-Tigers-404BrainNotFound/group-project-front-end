@@ -126,7 +126,7 @@ class ImageProfile extends Component {
         }
       }
     })
-      .then(response => this.setState({ isUpdated: true }))
+      .then(response => this.setState({ isUpdated: true, formShown: false }))
       .then(() => msgAlert({
         heading: 'Successfully Updated an Image',
         message: messages.updateImageSuccess,
