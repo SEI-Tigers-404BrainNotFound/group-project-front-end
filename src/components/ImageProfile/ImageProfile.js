@@ -8,11 +8,14 @@ import messages from '../AutoDismissAlert/messages'
 // import { withRouter, Link } from 'react-router-dom'
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
+import DateTimeDisplay from './../DateTimeDisplay/DateTimeDisplay'
 
 class ImageProfile extends Component {
   constructor (props) {
     super(props)
     console.log(props)
+    this.tempDescription = ''
+    this.tempTag = ''
     this.state = {
       isLoaded: false,
       isUpdated: false,
@@ -23,7 +26,8 @@ class ImageProfile extends Component {
       owner: '',
       id: this.props.id,
       createdUserImageId: null,
-      token: this.props.user.token
+      token: this.props.user.token,
+      createdAt: null
     } // this.state
   } // constructor
   componentDidMount () {
@@ -42,7 +46,9 @@ class ImageProfile extends Component {
           description: response.data.userImages.description,
           tag: response.data.userImages.tag,
           owner: response.data.userImages.owner,
-          formShown: false
+          formShown: false,
+          tempDescription: null,
+          createdAt: response.data.userImages.createdAt
         })
       })
       .catch(console.error)
@@ -50,9 +56,11 @@ class ImageProfile extends Component {
 
   onEditButtonClick = () => {
     this.setState({ formShown: true })
+    this.tempDescription = this.state.description
+    this.tempTag = this.state.tag
   }
   onCancelButtonClick = () => {
-    this.setState({ formShown: false })
+    this.setState({ formShown: false, description: this.tempDescription, tag: this.tempTag })
   }
 
   handleDelete = () => {
@@ -104,7 +112,7 @@ class ImageProfile extends Component {
   handleSubmit = (event) => {
     event.preventDefault()
     console.log(this.state.fileName)
-    const { msgAlert, history } = this.props
+    const { msgAlert } = this.props
     // make a POST request to API /books route with book data
     axios({
       url: `${apiUrl}/userImages/${this.state.id}`,
@@ -119,7 +127,6 @@ class ImageProfile extends Component {
       }
     })
       .then(response => this.setState({ isUpdated: true }))
-      .then(() => history.push('/image-profile/' + this.state.id))
       .then(() => msgAlert({
         heading: 'Successfully Updated an Image',
         message: messages.updateImageSuccess,
@@ -174,6 +181,9 @@ class ImageProfile extends Component {
                         </Card.Text>
                       </form>
                     }
+                    <Card.Text>
+                      <DateTimeDisplay dateTimeString={this.state.createdAt}></DateTimeDisplay>
+                    </Card.Text>
                   </Card.Body>
                 </div>
               </div>
