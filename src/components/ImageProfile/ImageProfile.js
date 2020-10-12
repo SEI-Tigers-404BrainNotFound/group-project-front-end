@@ -43,7 +43,8 @@ class ImageProfile extends Component {
           owner: response.data.userImages.owner,
           formShown: false,
           tempDescription: null,
-          createdAt: response.data.userImages.createdAt
+          createdAt: response.data.userImages.createdAt,
+          updatedAt: response.data.userImages.updatedAt
         })
       })
       .catch(console.error)
@@ -120,7 +121,10 @@ class ImageProfile extends Component {
         }
       }
     })
-      .then(response => this.setState({ isUpdated: true, formShown: false }))
+      .then(response => {
+        console.log(response)
+        this.setState({ isUpdated: true, formShown: false })
+      })
       .then(() => msgAlert({
         heading: 'Successfully Updated an Image',
         message: messages.updateImageSuccess,
@@ -157,7 +161,7 @@ class ImageProfile extends Component {
                     {!this.state.formShown &&
                     <div>
                       <Card.Title>{this.state.description}</Card.Title>
-                      <Card.Text>
+                      <Card.Text>Tag: &nbsp;
                         {this.state.tag}
                       </Card.Text>
                     </div>
@@ -175,7 +179,12 @@ class ImageProfile extends Component {
                       </form>
                     }
                     <Card.Text>
+                    Created on: &nbsp;
                       <DateTimeDisplay dateTimeString={this.state.createdAt}></DateTimeDisplay>
+                    </Card.Text>
+                    <Card.Text>
+                    Updated on: &nbsp;
+                      <DateTimeDisplay dateTimeString={this.state.updatedAt}></DateTimeDisplay>
                     </Card.Text>
                   </Card.Body>
                 </div>

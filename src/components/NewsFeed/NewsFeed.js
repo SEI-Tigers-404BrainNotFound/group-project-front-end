@@ -50,10 +50,11 @@ class NewsFeed extends React.Component {
                   <Card.Img variant="top" src={url + userImage.fileName} />
                   <Card.Body>
                     <Card.Title>{userImage.description}</Card.Title>
-                    <Card.Text>
+                    <Card.Text>Tag: &nbsp;
                       {userImage.tag}
                     </Card.Text>
                     <Card.Text>
+                    Created on: &nbsp;
                       <DateTimeDisplay dateTimeString={userImage.createdAt}></DateTimeDisplay>
                     </Card.Text>
                   </Card.Body>
