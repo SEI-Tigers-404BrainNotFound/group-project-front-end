@@ -50,7 +50,7 @@ Some of the challenges that we faced included:  setting up the AWS upload, getti
     13. CSS/Sass
 
 ### Links
-  [Depoloyed Frontend](https://sei-tigers-404brainnotfound.github.io/group-project-front-end/#/) <br>
+  [Deployed Frontend](https://sei-tigers-404brainnotfound.github.io/group-project-front-end/#/) <br>
   [Deployed Backend](https://git.heroku.com/morning-stream-98202.git) <br>
   [Frontend Github Repository](https://github.com/SEI-Tigers-404BrainNotFound/group-project-front-end)<br>
   [Backend Github Repository](https://github.com/SEI-Tigers-404BrainNotFound/group-project-back-end)
@@ -60,5 +60,5 @@ Some of the challenges that we faced included:  setting up the AWS upload, getti
     - Add the ability to create profile pictures and bios
     - Like and comment functionality on other people's posts.
 
-### Images
+### Wireframe
 ![wireframe](https://i.imgur.com/Y1AM1SU.jpg)
